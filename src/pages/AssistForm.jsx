@@ -40,9 +40,9 @@ const AssistForm = () => {
         body: JSON.stringify({ crop, area, location }),
       });
       const data = await res.json();
-      console.log(data)
-
+      
       if (res.ok) {
+        console.log(res)
         setResponse(data.reply);
         setRecommendation(data.reply)
 
