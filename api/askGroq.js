@@ -12,17 +12,46 @@ export default async function handler(req, res) {
 
   const { crop, area, location } = req.body;
 
+  if (!crop || !area || !location) {
+    return res.status(400).json({ error: "Missing required fields" });
+  }
+
   try {
+    const systemPrompt = `
+You are an expert agricultural assistant.
+
+Return only **Markdown-formatted advice** for a farmer, including:
+
+- Fertilizer & pesticide names
+- Quantity per acre (kg/ml)
+- Application methods & timing
+- Purpose
+- Safety or preparation tips
+
+Use proper Markdown syntax:
+- Headings (\`##\`, \`###\`)
+- Numbered lists
+- GitHub-style tables
+
+Do **not** include any extra notes, code blocks, or explanations. Only output Markdown text.
+`;
+
+    const userPrompt = `I am a farmer. I grow ${crop} on ${area} acres of land in ${location}. I may use fertilizers and pesticides. Please provide detailed advice.`;
+
     const completion = await openai.chat.completions.create({
       model: "llama3-70b-8192",
       messages: [
-        { role: "system", content: "You are an expert farming assistant." },
-        { role: "user", content: `I grow ${crop} on ${area} acres in ${location}.` },
+        { role: "system", content: systemPrompt },
+        { role: "user", content: userPrompt },
       ],
+      max_tokens: 1024,
     });
 
-    res.status(200).json({ reply: completion.choices[0].message.content });
+    const reply = completion.choices[0].message.content;
+
+    res.status(200).json({ reply });
   } catch (error) {
-    res.status(500).json({ error: error.message });
+    console.error("Error in /api/askGroq:", error);
+    res.status(500).json({ error: "Failed to get AI response" });
   }
 }
