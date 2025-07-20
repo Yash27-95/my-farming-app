@@ -1,9 +1,7 @@
 import React, { useState } from 'react';
-import { InferenceClient } from '@huggingface/inference';
 import ReactMarkdown from 'react-markdown';
 import remarkGfm from 'remark-gfm';
 import { useAI } from '../context/AIContext';
-import OpenAI from "openai";
 
 const AssistForm = () => {
   const [form, setForm] = useState({ crop: '', area: '', location: ''});
@@ -11,15 +9,6 @@ const AssistForm = () => {
   const [loading, setLoading] = useState(false);
   const { recommendation, setRecommendation } = useAI();
   const result = React.useRef(null)
-  console.log(result.current)
-
-  // console.log(response)
-
-  const openai = new OpenAI({
-    apiKey: import.meta.env.VITE_GROQ_API_KEY,
-    dangerouslyAllowBrowser: true,
-    baseURL: "https://api.groq.com/openai/v1", // set Groq endpoint
-  });
 
   React.useEffect(() => {
     if (recommendation && !response) {
@@ -51,6 +40,7 @@ const AssistForm = () => {
         body: JSON.stringify({ crop, area, location }),
       });
       const data = await res.json();
+      console.log(data)
 
       if (res.ok) {
         setResponse(data.reply);
