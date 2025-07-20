@@ -70,7 +70,7 @@ const Home = () => {
             Just tell us your crop, area, and location—let our assistant do the rest!
           </p>
           <button
-            onClick={() => navigate("ai")}
+            onClick={() => navigate("/ai")}
             style={{
               background: "#181818",
               color: "#fff",

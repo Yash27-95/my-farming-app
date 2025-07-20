@@ -33,14 +33,14 @@ const Header = () => {
           {menu && (
             <nav className="nav-narrow">
               <NavLink
-                to="ai"
+                to="/ai"
                 style={({ isActive }) => isActive ? activeStyles : undefined}
                 onClick={() => setMenu(false)}
               >
                 AI
               </NavLink>
               <NavLink
-                to="About"
+                to="/About"
                 style={({ isActive }) => isActive ? activeStyles : undefined}
                 onClick={() => setMenu(false)}
               >
@@ -52,13 +52,13 @@ const Header = () => {
       ) : (
         <nav className="nav-wide">
             <NavLink
-                to="ai"
+                to="/ai"
                 style={({ isActive }) => isActive ? activeStyles : undefined}
             >
                 AI
             </NavLink>
             <NavLink
-                to="About"
+                to="/About"
                 style={({ isActive }) => isActive ? activeStyles : undefined}
                 onClick={() => setMenu(false)}
                 >
