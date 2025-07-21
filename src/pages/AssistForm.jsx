@@ -4,7 +4,7 @@ import remarkGfm from 'remark-gfm';
 import { useAI } from '../context/AIContext';
 
 const AssistForm = () => {
-  const [form, setForm] = useState({ crop: '', area: '', location: ''});
+  const [form, setForm] = useState({ crop: '', area: '', location: '', season: ''});
   const [response, setResponse] = useState(null);
   const [loading, setLoading] = useState(false);
   const { recommendation, setRecommendation } = useAI();
@@ -27,7 +27,7 @@ const AssistForm = () => {
 
     const { crop, area, location } = form;
 
-    if (!crop || !area || !location) {
+    if (!crop || !area || !location || !season) {
       setLoading(false);
       setResponse({ error: "Please fill in all required fields." });
       return;
@@ -37,7 +37,7 @@ const AssistForm = () => {
       const res = await fetch("/api/askGroq", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ crop, area, location }),
+        body: JSON.stringify({ crop, area, location, season }),
       });
       const data = await res.json();
       
@@ -86,6 +86,19 @@ const AssistForm = () => {
           required
           onChange={handleChange}
         />
+        <select
+          name="season"
+          required
+          value={form.season}
+          onChange={handleChange}
+          style={{ padding: '0.6rem', borderRadius: '6px' }}
+        >
+          <option value="">Select Season</option>
+          <option value="rain">Rain</option>
+          <option value="summer">Summer</option>
+          <option value="winter">Winter</option>
+          <option value="All Seasons">All Seasons</option>
+        </select>
         <button type="submit" disabled={loading}>
           {loading ? "Loading..." : "Get Recommendations"}
         </button>

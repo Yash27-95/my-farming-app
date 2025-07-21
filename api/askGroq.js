@@ -38,7 +38,7 @@ Use proper Markdown syntax:
 Do **not** include any extra notes, code blocks, or explanations. Only output Markdown text.
 `;
 
-    const userPrompt = `I am a farmer. I grow ${crop} on ${area} acres of land in ${location}. I may use fertilizers and pesticides. Please provide detailed advice.`;
+    const userPrompt = `I am a farmer. I grow ${crop} on ${area} acres of land in ${location}. The current season is ${season}. I may use fertilizers and pesticides. Please provide detailed advice.`;
 
     const completion = await openai.chat.completions.create({
       model: "llama3-70b-8192",
