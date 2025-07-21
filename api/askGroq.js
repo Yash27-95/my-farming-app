@@ -12,9 +12,9 @@ export default async function handler(req, res) {
     return res.status(405).json({ error: "Only POST allowed" });
   }
 
-  const { crop, area, location } = req.body;
+  const { crop, area, location, season } = req.body;
 
-  if (!crop || !area || !location) {
+  if (!crop || !area || !location || !season) {
     return res.status(400).json({ error: "Missing required fields" });
   }
 
