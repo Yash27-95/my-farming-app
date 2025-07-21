@@ -25,7 +25,7 @@ const AssistForm = () => {
     setLoading(true);
     setResponse(null);
 
-    const { crop, area, location } = form;
+    const { crop, area, location, season } = form;
 
     if (!crop || !area || !location || !season) {
       setLoading(false);
