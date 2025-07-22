@@ -91,7 +91,6 @@ const AssistForm = () => {
           required
           value={form.season}
           onChange={handleChange}
-          style={{ padding: '0.6rem', borderRadius: '6px' }}
         >
           <option value="">Select Season</option>
           <option value="rain">Rain</option>
