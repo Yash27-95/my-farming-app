@@ -136,7 +136,8 @@ main {
   margin-bottom: 1.5rem;
 }
 
-.ai-form input[type="text"] {
+.ai-form input[type="text"],
+.ai-form select {
   padding: 0.8em 1em;
   border: 1px solid #e0e0e0;
   border-radius: 8px;
@@ -146,7 +147,8 @@ main {
   color: #181818;
 }
 
-.ai-form input[type="text"]:focus {
+.ai-form input[type="text"]:focus,
+.ai-form select:focus {
   border: 1.5px solid #181818;
   outline: none;
   background: #fff;
@@ -178,7 +180,8 @@ main {
   padding: 1.2em 1em;
   margin-top: 1.5em;
   box-shadow: 0 2px 8px rgba(0,0,0,0.03);
-  max-height: 320px;
+  /* max-height: 320px; */
+  max-height: 500px;
   overflow-y: auto;
   overflow-x: auto;
   scrollbar-width: thin;

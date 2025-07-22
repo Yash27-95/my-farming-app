@@ -29,6 +29,7 @@ Return only **Markdown-formatted advice** for a farmer, including:
 - Application methods & timing
 - Purpose
 - Safety or preparation tips
+- Reply defensively if the crop type is illegal
 
 Use proper Markdown syntax:
 - Headings (\`##\`, \`###\`)
